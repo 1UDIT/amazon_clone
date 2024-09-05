@@ -8,7 +8,7 @@ export default function Home() {
         <div className=" h-[30%]  w-full p-5">
           <CarouselPlugin />
         </div>
-        <div className=" h-[70%] w-[90%] mx-[5%] bg-green-500 flex justify-center   p-6 ">
+        <div className=" h-[70%] w-[90%] mx-[5%] bg-green-500 flex justify-center   p-6 relative -top-[95px]">
           <Index />
         </div>
       </div>
