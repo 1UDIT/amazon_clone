@@ -48,7 +48,7 @@ const Category = () => {
                                     className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32">
+                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@ const Category = () => {
                                     className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32">
+                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@ const Category = () => {
                                     className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32">
+                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
@@ -182,7 +182,7 @@ const Category = () => {
                                     className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32">
+                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@ const Category = () => {
                                     className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32">
+                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>

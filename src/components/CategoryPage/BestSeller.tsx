@@ -38,11 +38,8 @@ const BestSeller = () => {
             <CarouselContent>
                 {
                     isLoading === true ? Array(19).fill(null).map((_, index) => (
-                        <CarouselItem className="md:basis-1/2 lg:basis-1/6">
-                            <div
-                                className="relative mx-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
-                                key={index}
-                            >
+                        <CarouselItem className="md:basis-1/2 lg:basis-1/6" key={index}>
+                            <div className="relative mx-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md">
                                 <div className="relative mx-3 my-3 flex rounded-xl h-32">
                                     <Skeleton className="h-32 w-full" />
                                 </div>
