@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import React from 'react'
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
-import { FaFlag, FaLocationDot } from "react-icons/fa6"; 
+import { FaFlag, FaLocationDot } from "react-icons/fa6";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
     return (
         <header className='h-22 bg-black w-full'>
-            <div className='h-14 grid 2xl:grid-cols-[20%_60%_20%] grid-cols-[25%_45%_30%] pt-2'>
+            <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1'>
                 <div className='text-white grid 2xl:grid-cols-[45%_55%] grid-cols-[45%_55%] justify-start'>
                     <span className='w-full m-2  h-9'>
                         <Image
@@ -62,18 +63,24 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className='h-8 grid grid-cols-[20%_60%_20%] bg-[#232f3e]'>
-                <div className='text-white grid grid-cols-[30%_40%] justify-start'>
-                    <span>Logo</span>
-                    <span>Location</span>
+            <div className='h-8 grid grid-cols-[15%_60%_20%] bg-[#232f3e] items-center'>
+                <div className='text-white grid grid-cols-[50%_50%] justify-start px-2'>
+                    <span className='grid  grid-cols-[20%_80%] '>
+                        <span className='flex items-center text-lg'><GiHamburgerMenu className='inline-block font-bold' size={20} /></span>
+                        <span className='flex items-center'>All</span>
+                    </span>
+                    <span>Fresh</span>
                 </div>
-                <div className='text-white grid grid-cols-1'>
-                    <span className='grid justify-center' >Logo</span>
+                <div className='text-white grid grid-cols-[20%_20%_20%_20%_20%]'>
+                    <span className='grid justify-center' >Prime</span>
+                    <span className='grid justify-center' >Today's Deals</span>
+                    <span className='grid justify-center' >Electronic</span>
+                    <span className='grid justify-center' >Buy Again</span>
                 </div>
-                <div className='text-white grid grid-cols-[30%_40%]'>
+                {/* <div className='text-white grid grid-cols-[30%_40%]'>
                     <span className='grid justify-center' >userName</span>
                     <span className='grid justify-end' ><FiShoppingCart /></span>
-                </div>
+                </div> */}
             </div>
         </header>
     )

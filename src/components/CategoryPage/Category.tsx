@@ -1,17 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import React, { useEffect, useMemo } from "react";
-import Ratings from "../Ratings";
-import { Card, CardContent } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+import React, { useEffect, useMemo } from "react"; 
 import { useRouter } from "next/navigation";
 import { CategoryApi } from "@/Hooks/apiCaller";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -31,8 +21,7 @@ const Category = () => {
     const router = useRouter();
     // const [data] = CategoryApi();
     const [text, setText] = React.useState('')
-    const { data, error, isLoading } = useQuery(['products'], fetchProducts);
-
+    const { data, error, isLoading } = useQuery(['products'], fetchProducts); 
 
     return (
         <div className="mb-5 flex w-full flex-col gap-2 ">
@@ -45,19 +34,22 @@ const Category = () => {
                         {
                             isLoading === true ? Array(4).fill(null).map((_, index) => (
                                 <div
-                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
+                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white "
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
+                                    <div className="relative mx-3 mt-3 flex  h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
                             )) :
                                 data?.map((Item: any) => {
                                     return (
-                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md" key={Item.id}>
-                                            <a className="relative mx-3 mt-3 flex rounded-xl h-32" href="#">
+                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white " key={Item.id}>
+                                            <a className="relative  mt-3 flex h-32" href="#">
                                                 <Image
+                                                    onClick={() => {
+                                                        router.push(`/Product/${Item.id}`);
+                                                    }}
                                                     className="cursor-pointer"
                                                     src={Item.image}
                                                     alt="product image"
@@ -65,34 +57,14 @@ const Category = () => {
                                                     height={100}
                                                     priority={true} />
                                             </a>
-                                            <div className="mt-4 px-5 pb-5">
+                                            <div className="mt-4 px-2 pb-5">
                                                 <a href="#">
-                                                    <span className="text-xs tracking-tight text-slate-900">{Item.category}</span>
+                                                    <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
                                                 </a>
                                             </div>
                                         </div>)
                                 })
                         }
-                        {/* {data?.map((Item: any) => {
-                            return (
-                                <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md" key={Item.id}>
-                                    <a className="relative mx-3 mt-3 flex rounded-xl h-32" href="#">
-                                        <Image
-                                            className="cursor-pointer"
-                                            src={Item.image}
-                                            alt="product image"
-                                            width={100}
-                                            height={100}
-                                            priority={true} />
-                                    </a>
-                                    <div className="mt-4 px-5 pb-5">
-                                        <a href="#">
-                                            <span className="text-xs tracking-tight text-slate-900">{Item.category}</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            )
-                        })} */}
                     </div>
                 </div>
                 <div className="col-span-1 bg-white p-5">
@@ -103,18 +75,18 @@ const Category = () => {
                         {
                             isLoading === true ? Array(4).fill(null).map((_, index) => (
                                 <div
-                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
+                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white "
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
+                                    <div className="relative mx-3 mt-3 flex  h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
                             )) :
                                 data?.map((Item: any) => {
                                     return (
-                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md" key={Item.id}>
-                                            <a className="relative mx-3 mt-3 flex rounded-xl h-32" href="#">
+                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                            <a className="relative  mt-3 flex  h-32" href="#">
                                                 <Image
                                                     className="cursor-pointer"
                                                     src={Item.image}
@@ -123,9 +95,9 @@ const Category = () => {
                                                     height={100}
                                                     priority={true} />
                                             </a>
-                                            <div className="mt-4 px-5 pb-5">
+                                            <div className="mt-4 px-2  pb-5">
                                                 <a href="#">
-                                                    <span className="text-xs tracking-tight text-slate-900">{Item.category}</span>
+                                                    <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
                                                 </a>
                                             </div>
                                         </div>)
@@ -141,18 +113,18 @@ const Category = () => {
                         {
                             isLoading === true ? Array(4).fill(null).map((_, index) => (
                                 <div
-                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
+                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white "
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
+                                    <div className="relative mx-3 mt-3 flex  h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
                             )) :
                                 data?.map((Item: any) => {
                                     return (
-                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md" key={Item.id}>
-                                            <a className="relative mx-3 mt-3 flex rounded-xl h-32" href="#">
+                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                            <a className="relative  mt-3 flex  h-32" href="#">
                                                 <Image
                                                     className="cursor-pointer"
                                                     src={Item.image}
@@ -161,9 +133,9 @@ const Category = () => {
                                                     height={100}
                                                     priority={true} />
                                             </a>
-                                            <div className="mt-4 px-5 pb-5">
+                                            <div className="mt-4 px-2 pb-5">
                                                 <a href="#">
-                                                    <span className="text-xs tracking-tight text-slate-900">{Item.category}</span>
+                                                    <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
                                                 </a>
                                             </div>
                                         </div>)
@@ -179,18 +151,18 @@ const Category = () => {
                         {
                             isLoading === true ? Array(4).fill(null).map((_, index) => (
                                 <div
-                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
+                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white"
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
+                                    <div className="relative mx-3 mt-3 flex  h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
                             )) :
                                 data?.map((Item: any) => {
                                     return (
-                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md" key={Item.id}>
-                                            <a className="relative mx-3 mt-3 flex rounded-xl h-32" href="#">
+                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                            <a className="relative  mt-3 flex h-32" href="#">
                                                 <Image
                                                     className="cursor-pointer"
                                                     src={Item.image}
@@ -199,9 +171,9 @@ const Category = () => {
                                                     height={100}
                                                     priority={true} />
                                             </a>
-                                            <div className="mt-4 px-5 pb-5">
+                                            <div className="mt-4 px-2  pb-5">
                                                 <a href="#">
-                                                    <span className="text-xs tracking-tight text-slate-900">{Item.category}</span>
+                                                    <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
                                                 </a>
                                             </div>
                                         </div>)
@@ -217,18 +189,18 @@ const Category = () => {
                         {
                             isLoading === true ? Array(4).fill(null).map((_, index) => (
                                 <div
-                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md"
+                                    className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white "
                                     key={index}
                                 >
-                                    <div className="relative mx-3 mt-3 flex rounded-xl h-32 my-2">
+                                    <div className="relative mx-3 mt-3 flex h-32 my-2">
                                         <Skeleton className="h-32 w-full" />
                                     </div>
                                 </div>
                             )) :
                                 data?.map((Item: any) => {
                                     return (
-                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white shadow-md" key={Item.id}>
-                                            <a className="relative mx-3 mt-3 flex rounded-xl h-32" href="#">
+                                        <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                            <a className="relative mt-3 flex h-32" href="#">
                                                 <Image
                                                     className="cursor-pointer"
                                                     src={Item.image}
@@ -237,9 +209,9 @@ const Category = () => {
                                                     height={100}
                                                     priority={true} />
                                             </a>
-                                            <div className="mt-4 px-5 pb-5">
+                                            <div className="mt-4 px-2 pb-5">
                                                 <a href="#">
-                                                    <span className="text-xs tracking-tight text-slate-900">{Item.category}</span>
+                                                    <span className="text-xs font-bold tracking-tight text-slate-900">{Item.category}</span>
                                                 </a>
                                             </div>
                                         </div>)
