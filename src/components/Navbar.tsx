@@ -1,10 +1,17 @@
+'use client'
 import Image from 'next/image';
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { FaFlag, FaLocationDot } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from 'react-redux';
+import { RootState } from '@/Redux/Slice/store';
 
 const Navbar = () => {
+    const cart = useSelector((state: RootState) => state.cart.cart)
+    useEffect(() => {
+        console.log("cartLeng", cart)
+    }, [cart])
     return (
         <header className='h-22 bg-black w-full'>
             <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1'>
@@ -57,7 +64,15 @@ const Navbar = () => {
                         <div>Returns</div>
                         <div className="font-bold">& Orders</div>
                     </div>
-                    <div className="text-sm pt-2">
+                    <div className="text-sm pt-2 relative ">
+                        <div className="absolute left-[10px]">
+                            <p
+                                className={`flex items-center justify-center text-xs 
+                                ${cart.length === 0 ? "hidden" : "block h-5 w-5 rounded-full bg-red-600"}`}
+                            >
+                                {cart.length}
+                            </p>
+                        </div>
                         <FiShoppingCart size={30} className='inline-block' />
                         <span className="font-bold">Cart</span>
                     </div>
@@ -82,7 +97,7 @@ const Navbar = () => {
                     <span className='grid justify-end' ><FiShoppingCart /></span>
                 </div> */}
             </div>
-        </header>
+        </header >
     )
 }
 
