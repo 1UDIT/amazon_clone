@@ -79,7 +79,7 @@ export default function CartItem({ item, cartItems }: props) {
                         </SelectContent>
                     </Select>
                 </div>
-                <Button className="text-blue-500 text-sm" onClick={() => dispatch(removeFromCart(item.id))}>Delete</Button>
+                <Button className="text-blue-500 text-sm" onClick={() => {dispatch(removeFromCart(item.id));console.log(item.id)}}>Delete</Button>
             </div>
         </div>
     );
