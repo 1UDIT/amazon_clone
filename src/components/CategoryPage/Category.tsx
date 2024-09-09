@@ -24,7 +24,7 @@ const Category = () => {
     const { data, error, isLoading } = useQuery(['products'], fetchProducts);
 
     return (
-        <div className="grid grid-cols-1  gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+        <div className="grid grid-cols-1  gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             <div className="col-span-1 bg-white p-5">
                 <div className="pl-5 text-lg font-bold">
                     Pick up where you left off

@@ -26,8 +26,7 @@ const page = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useQuery(['productsId', id], () => fetchProducts(id));
   const discount = ((200 - data?.price) / 200) * 100;
-  const dispatch = useDispatch();
-  console.log(data, "data")
+  const dispatch = useDispatch(); 
   return (
     <div className="container mx-auto p-4">
       {/* Main container */}

@@ -24,7 +24,6 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            console.log(action, "action");
             const checkProductIsAdded = state.cart.find((item) => {
                 return item.id === action.payload.id;
             });
@@ -38,23 +37,34 @@ const cartSlice = createSlice({
             }
         },
         removeFromCart: (state, action) => {
+            console.log("item", action)
             state.cart = state.cart.filter(
                 (product: any) => product.id !== action.payload.id,
             );
         },
 
         incrementQuantity: (state, action) => {
-            state.cart = state.cart.map((item: any) => {
-                return {
-                    ...item,
-                    quantity: action.payload,
-                };
+            console.log(action.payload.id, "action.payload.id");
+            state.cart = state.cart.map((item) => {
+                if (item.id === action.payload.id) {
+                    return {
+                        ...item,
+                        quantity: action.payload.amount,
+                    };
+                }
+                return item;
             });
         },
 
-        decrementQuantity: (state, action) => {
-            state.cart = state.cart.map((item: any) => {
-                return { ...item, quantity: action.payload };
+        decrementQuantity: (state, action) => { 
+            state.cart = state.cart.map((item) => {
+                if (item.id === action.payload.id && item.quantity > 0) {
+                    return {
+                        ...item,
+                        quantity: action.payload.amount 
+                    };
+                }
+                return item;
             });
         },
     },

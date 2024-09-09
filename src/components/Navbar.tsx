@@ -6,30 +6,42 @@ import { FaFlag, FaLocationDot } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector } from 'react-redux';
 import { RootState } from '@/Redux/Slice/store';
+import { useRouter } from 'next/navigation';
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
+import { Button } from './ui/button';
+
 
 const Navbar = () => {
-    const cart = useSelector((state: RootState) => state.cart.cart)
-    useEffect(() => {
-        console.log("cartLeng", cart)
-    }, [cart])
+    const router = useRouter();
+    const cart = useSelector((state: RootState) => state.cart.cart) 
     return (
         <header className='h-22 bg-black w-full'>
-            <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1'>
-                <div className='text-white grid 2xl:grid-cols-[45%_55%] grid-cols-[45%_55%] justify-start'>
-                    <span className='w-full m-2  h-9'>
+            <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1.5'>
+                <div className='text-white grid 2xl:grid-cols-[40%_60%] lg:grid-cols-[45%_55%] justify-start'>
+                    <span className='w-full m-2 flex items-center justify-center h-9'>
                         <Image
+                            onClick={() => {
+                                router.push(`/`);
+                            }}
                             src={'/img/logo.png'}
                             alt="product image"
                             width="0"
                             height="0"
                             sizes="100vw"
-                            className='h-[30px] w-[97px] inline-block'
+                            className='h-[30px] w-[97px] inline-block cursor-pointer'
                             priority={true}
                         /><span className='text-lg text-white '>.in</span>
                     </span>
-                    <span className='grid  grid-cols-[15%_85%] text-xs h-3 pt-1'>
+                    <span className='grid  2xl:grid-cols-[10%_90%] lg:grid-cols-[15%_85%] grid-cols-[15%_85%] text-xs pt-1'>
                         <span className='flex items-center'><FaLocationDot className='inline-block' size={20} /></span>
-                        <div className='grid grid-rows-[50%_50%] '>
+                        <div className='grid 2xl:grid-rows-[40%_60%] grid-rows-[50%_50%] '>
                             <span>Delivering to New Delhi</span>
                             <span>Update Location</span>
                         </div>
@@ -64,8 +76,10 @@ const Navbar = () => {
                         <div>Returns</div>
                         <div className="font-bold">& Orders</div>
                     </div>
-                    <div className="text-sm pt-2 relative ">
-                        <div className="absolute left-[10px]">
+                    <div className="text-sm pt-2 relative cursor-pointer" onClick={() => {
+                        router.push(`/Cart`);
+                    }}>
+                        <div className="absolute left-[10px] ">
                             <p
                                 className={`flex items-center justify-center text-xs 
                                 ${cart.length === 0 ? "hidden" : "block h-5 w-5 rounded-full bg-red-600"}`}
@@ -80,11 +94,20 @@ const Navbar = () => {
             </div>
             <div className='h-8 grid grid-cols-[15%_60%_20%] bg-[#232f3e] items-center'>
                 <div className='text-white grid grid-cols-[50%_50%] justify-start px-2'>
-                    <span className='grid  grid-cols-[20%_80%] '>
-                        <span className='flex items-center text-lg'><GiHamburgerMenu className='inline-block font-bold' size={20} /></span>
-                        <span className='flex items-center'>All</span>
+                    <span className='grid  grid-cols-[30%_70%] '>
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant={'default'}>
+                                    <span className='flex items-center text-lg'><GiHamburgerMenu className='inline-block font-bold' size={20} /></span>
+                                    <span className='flex items-center'>
+                                        ALL
+                                    </span>
+                                </Button>
+                            </SheetTrigger>
+                            <Test />
+                        </Sheet>
                     </span>
-                    <span>Fresh</span>
+                    <span className='flex items-center content-center'>Fresh</span>
                 </div>
                 <div className='text-white grid grid-cols-[20%_20%_20%_20%_20%]'>
                     <span className='grid justify-center' >Prime</span>
@@ -98,6 +121,20 @@ const Navbar = () => {
                 </div> */}
             </div>
         </header >
+    )
+}
+
+export const Test = () => {
+    return (
+        <SheetContent side={'left'}>
+            <SheetHeader>
+                <SheetTitle className="text-center">Restore Panel</SheetTitle>
+            </SheetHeader>
+            <div className="mx-auto w-full max-w-sm pt-5">
+                test
+            </div>
+        </SheetContent >
+
     )
 }
 
