@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { CategoryApi } from "@/Hooks/apiCaller";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Skeleton } from "../ui/skeleton";
+import Link from "next/link";
 
 const fetchProducts = async () => {
     const response = await fetch('https://fakestoreapi.com/products?limit=4')
@@ -43,16 +44,19 @@ const Category = () => {
                                 return (
                                     <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
                                         <a className="relative  mt-3 flex h-32" href="#">
-                                            <Image
-                                                onClick={() => {
-                                                    router.push(`/Product/${Item.id}`);
+                                            <Link
+                                                href={{
+                                                    pathname: `/Product/${Item.id}`,
                                                 }}
-                                                className="cursor-pointer"
-                                                src={Item.image}
-                                                alt="product image"
-                                                width={100}
-                                                height={100}
-                                                priority={true} />
+                                            >
+                                                <Image
+                                                    className="cursor-pointer"
+                                                    src={Item.image}
+                                                    alt="product image"
+                                                    width={100}
+                                                    height={100}
+                                                    priority={false} />
+                                            </Link>
                                         </a>
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
@@ -84,16 +88,19 @@ const Category = () => {
                                 return (
                                     <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
                                         <a className="relative  mt-3 flex  h-32" href="#">
-                                            <Image
-                                                onClick={() => {
-                                                    router.push(`/Product/${Item.id}`);
+                                            <Link
+                                                href={{
+                                                    pathname: `/Product/${Item.id}`,
                                                 }}
-                                                className="cursor-pointer"
-                                                src={Item.image}
-                                                alt="product image"
-                                                width={100}
-                                                height={100}
-                                                priority={true} />
+                                            >
+                                                <Image
+                                                    className="cursor-pointer"
+                                                    src={Item.image}
+                                                    alt="product image"
+                                                    width={100}
+                                                    height={100}
+                                                    priority={false} />
+                                            </Link>
                                         </a>
                                         <div className="mt-4 px-2  pb-5">
                                             <a href="#">
@@ -125,16 +132,19 @@ const Category = () => {
                                 return (
                                     <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
                                         <a className="relative  mt-3 flex  h-32" href="#">
-                                            <Image
-                                                onClick={() => {
-                                                    router.push(`/Product/${Item.id}`);
+                                            <Link
+                                                href={{
+                                                    pathname: `/Product/${Item.id}`,
                                                 }}
-                                                className="cursor-pointer"
-                                                src={Item.image}
-                                                alt="product image"
-                                                width={100}
-                                                height={100}
-                                                priority={true} />
+                                            >
+                                                <Image
+                                                    className="cursor-pointer"
+                                                    src={Item.image}
+                                                    alt="product image"
+                                                    width={100}
+                                                    height={100}
+                                                    priority={false} />
+                                            </Link>
                                         </a>
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
@@ -166,16 +176,22 @@ const Category = () => {
                                 return (
                                     <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
                                         <a className="relative mt-3 flex h-32" href="#">
-                                            <Image
-                                                onClick={() => {
-                                                    router.push(`/Product/${Item.id}`);
+                                            <Link
+                                                href={{
+                                                    pathname: `/Product/${Item.id}`,
                                                 }}
-                                                className="cursor-pointer"
-                                                src={Item.image}
-                                                alt="product image"
-                                                width={100}
-                                                height={100}
-                                                priority={true} />
+                                            >
+                                                <Image
+                                                    onClick={() => {
+                                                        router.push(`/Product/${Item.id}`);
+                                                    }}
+                                                    className="cursor-pointer"
+                                                    src={Item.image}
+                                                    alt="product image"
+                                                    width={100}
+                                                    height={100}
+                                                    priority={false} />
+                                            </Link>
                                         </a>
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">

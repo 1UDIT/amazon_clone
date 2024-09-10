@@ -1,8 +1,10 @@
 'use client'
 
 import React from 'react'
-import Category from './Category'
-import BestSeller from './BestSeller'
+import dynamic from 'next/dynamic'
+
+const Category = dynamic(() => import('./Category'), { ssr: false })
+const BestSeller = dynamic(() => import('./BestSeller'), { ssr: false })
 
 const Index = () => {
     return (

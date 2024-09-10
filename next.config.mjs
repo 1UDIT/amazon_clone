@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = { 
     images: {
-        domains: ['fakestoreapi.com']
-    },
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'fakestoreapi.com', 
+          },
+        ],
+      },
 }
 export default nextConfig;

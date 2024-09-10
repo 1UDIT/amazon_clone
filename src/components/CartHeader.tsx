@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 type SubtotalProps = {
@@ -12,9 +13,11 @@ export default function CartHeader({ cartItems, subtotal }: SubtotalProps) {
         <h2 className="text-2xl font-bold">Shopping Cart</h2>
         <div>
           <p className="text-lg">Subtotal ({cartItems.length} items): ₹{Math.round(subtotal)}</p>
-          <button className="bg-yellow-500 text-white py-2 px-4 rounded">
-            Proceed to Buy
-          </button>
+          <Link href={'/BuyProductPage'}>
+            <button className="bg-yellow-500 text-white py-2 px-4 rounded">
+              Proceed to Buy
+            </button>
+          </Link>
         </div>
       </div>
     </div>

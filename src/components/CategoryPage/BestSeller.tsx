@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/carousel"
 import { useQuery } from "react-query";
 import { Skeleton } from "../ui/skeleton";
+import Link from "next/link";
 
 
 const fetchProducts = async () => {
@@ -52,13 +53,19 @@ const BestSeller = () => {
                                     <Card>
                                         <CardContent className="flex aspect-square items-center justify-center p-6 h-32 w-full">
                                             <a className="relative mx-3 mt-3 flex rounded-xl " href="#">
-                                                <Image
-                                                    className="cursor-pointer"
-                                                    src={Item.image}
-                                                    alt="product image"
-                                                    width={100}
-                                                    height={100}
-                                                    priority={true} />
+                                                <Link
+                                                    href={{
+                                                        pathname: `/Product/${Item.id}`,
+                                                    }}
+                                                >
+                                                    <Image
+                                                        className="cursor-pointer"
+                                                        src={Item.image}
+                                                        alt="product image"
+                                                        width={100}
+                                                        height={100}
+                                                        priority={true} />
+                                                </Link>
                                             </a>
                                         </CardContent>
                                     </Card>

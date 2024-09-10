@@ -16,28 +16,33 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 
 const Navbar = () => {
     const router = useRouter();
-    const cart = useSelector((state: RootState) => state.cart.cart) 
+    const cart = useSelector((state: RootState) => state.cart.cart)
     return (
         <header className='h-22 bg-black w-full'>
             <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1.5'>
                 <div className='text-white grid 2xl:grid-cols-[40%_60%] lg:grid-cols-[45%_55%] justify-start'>
                     <span className='w-full m-2 flex items-center justify-center h-9'>
-                        <Image
-                            onClick={() => {
-                                router.push(`/`);
+                        <Link
+                            href={{
+                                pathname: `/`,
                             }}
-                            src={'/img/logo.png'}
-                            alt="product image"
-                            width="0"
-                            height="0"
-                            sizes="100vw"
-                            className='h-[30px] w-[97px] inline-block cursor-pointer'
-                            priority={true}
-                        /><span className='text-lg text-white '>.in</span>
+                        >
+                            <Image
+                                src={'/img/logo.png'}
+                                alt="product image"
+                                width="0"
+                                height="0"
+                                sizes="100vw"
+                                className='h-[30px] w-[97px] inline-block cursor-pointer'
+                                priority={true}
+                            />
+                        </Link>
+                        <span className='text-lg text-white '>.in</span>
                     </span>
                     <span className='grid  2xl:grid-cols-[10%_90%] lg:grid-cols-[15%_85%] grid-cols-[15%_85%] text-xs pt-1'>
                         <span className='flex items-center'><FaLocationDot className='inline-block' size={20} /></span>
