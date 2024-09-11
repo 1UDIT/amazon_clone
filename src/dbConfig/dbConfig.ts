@@ -1,37 +1,27 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient, Db } from 'mongodb';
 
-let uri = process.env.MONGO_URI
-let dbName = "ANIME"
+const uri: string = process.env.MONGO_URI || '';
+const dbName: string = 'OnlineEcommerce';
 
-let cachedClient = null
-let cachedDb = null
+let cachedClient: MongoClient | null = null;
+let cachedDb: Db | null = null;
 
 if (!uri) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
-  )
+  throw new Error('Please define the MONGO_URI environment variable inside .env.local');
 }
 
-if (!dbName) {
-  throw new Error(
-    'Please define the MONGODB_DB environment variable inside .env.local'
-  )
-}
-
-export async function connectToDatabase() {
+export async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
   if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb }
+    return { client: cachedClient, db: cachedDb };
   }
 
-  const client = await MongoClient.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  const client = new MongoClient(uri); // No need for options like useNewUrlParser and useUnifiedTopology
 
-  const db = await client.db(dbName)
+  await client.connect();
+  const db = client.db(dbName);
 
-  cachedClient = client
-  cachedDb = db
+  cachedClient = client;
+  cachedDb = db;
 
-  return { client, db }
+  return { client, db };
 }

@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from './ui/button';
 import Link from 'next/link';
+import AddressDialog from './Dialog/AddressDialog';
 
 
 const Navbar = () => {
@@ -45,10 +46,11 @@ const Navbar = () => {
                         <span className='text-lg text-white '>.in</span>
                     </span>
                     <span className='grid  2xl:grid-cols-[10%_90%] lg:grid-cols-[15%_85%] grid-cols-[15%_85%] text-xs pt-1'>
-                        <span className='flex items-center'><FaLocationDot className='inline-block' size={20} /></span>
+                        <span className='flex items-center'>
+                            <FaLocationDot className='inline-block' size={20} />
+                        </span>
                         <div className='grid 2xl:grid-rows-[40%_60%] grid-rows-[50%_50%] '>
-                            <span>Delivering to New Delhi</span>
-                            <span>Update Location</span>
+                           <AddressDialog/>
                         </div>
                     </span>
                 </div>

@@ -42,9 +42,8 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
-                                        <a className="relative  mt-3 flex h-32" href="#">
-                                            <Link
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
+                                            <Link className="relative  mt-3 flex h-32"
                                                 href={{
                                                     pathname: `/Product/${Item.id}`,
                                                 }}
@@ -56,8 +55,7 @@ const Category = () => {
                                                     width={100}
                                                     height={100}
                                                     priority={false} />
-                                            </Link>
-                                        </a>
+                                            </Link> 
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
@@ -86,8 +84,7 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
-                                        <a className="relative  mt-3 flex  h-32" href="#">
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
                                             <Link
                                                 href={{
                                                     pathname: `/Product/${Item.id}`,
@@ -100,8 +97,7 @@ const Category = () => {
                                                     width={100}
                                                     height={100}
                                                     priority={false} />
-                                            </Link>
-                                        </a>
+                                            </Link> 
                                         <div className="mt-4 px-2  pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
@@ -130,8 +126,7 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
-                                        <a className="relative  mt-3 flex  h-32" href="#">
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
                                             <Link
                                                 href={{
                                                     pathname: `/Product/${Item.id}`,
@@ -144,8 +139,7 @@ const Category = () => {
                                                     width={100}
                                                     height={100}
                                                     priority={false} />
-                                            </Link>
-                                        </a>
+                                            </Link> 
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
@@ -174,8 +168,7 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
-                                        <a className="relative mt-3 flex h-32" href="#">
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
                                             <Link
                                                 href={{
                                                     pathname: `/Product/${Item.id}`,
@@ -191,8 +184,7 @@ const Category = () => {
                                                     width={100}
                                                     height={100}
                                                     priority={false} />
-                                            </Link>
-                                        </a>
+                                            </Link> 
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold tracking-tight text-slate-900">{Item.category}</span>

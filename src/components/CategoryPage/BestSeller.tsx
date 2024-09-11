@@ -52,21 +52,19 @@ const BestSeller = () => {
                                 <div className="p-1">
                                     <Card>
                                         <CardContent className="flex aspect-square items-center justify-center p-6 h-32 w-full">
-                                            <a className="relative mx-3 mt-3 flex rounded-xl " href="#">
-                                                <Link
-                                                    href={{
-                                                        pathname: `/Product/${Item.id}`,
-                                                    }}
-                                                >
-                                                    <Image
-                                                        className="cursor-pointer"
-                                                        src={Item.image}
-                                                        alt="product image"
-                                                        width={100}
-                                                        height={100}
-                                                        priority={true} />
-                                                </Link>
-                                            </a>
+                                            <Link className="relative mx-3 mt-3 flex rounded-xl "
+                                                href={{
+                                                    pathname: `/Product/${Item.id}`,
+                                                }}
+                                            >
+                                                <Image
+                                                    className="cursor-pointer"
+                                                    src={Item.image}
+                                                    alt="product image"
+                                                    width={100}
+                                                    height={100}
+                                                    priority={true} />
+                                            </Link>
                                         </CardContent>
                                     </Card>
                                 </div>
