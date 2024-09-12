@@ -42,20 +42,20 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
-                                            <Link className="relative  mt-3 flex h-32"
-                                                href={{
-                                                    pathname: `/Product/${Item.id}`,
-                                                }}
-                                            >
-                                                <Image
-                                                    className="cursor-pointer"
-                                                    src={Item.image}
-                                                    alt="product image"
-                                                    width={100}
-                                                    height={100}
-                                                    priority={false} />
-                                            </Link> 
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                        <Link className="relative  mt-3 flex h-32"
+                                            href={{
+                                                pathname: `/Product/${Item.id}`,
+                                            }}
+                                        >
+                                            <Image
+                                                className="cursor-pointer"
+                                                src={Item.image}
+                                                alt="product image"
+                                                fill={true}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                 />
+                                        </Link>
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
@@ -84,20 +84,20 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
-                                            <Link
-                                                href={{
-                                                    pathname: `/Product/${Item.id}`,
-                                                }}
-                                            >
-                                                <Image
-                                                    className="cursor-pointer"
-                                                    src={Item.image}
-                                                    alt="product image"
-                                                    width={100}
-                                                    height={100}
-                                                    priority={false} />
-                                            </Link> 
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                        <Link className="relative  mt-3 flex h-32"
+                                            href={{
+                                                pathname: `/Product/${Item.id}`,
+                                            }}
+                                        >
+                                            <Image
+                                                className="cursor-pointer"
+                                                src={Item.image}
+                                                alt="product image"
+                                                fill={true}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                priority={false} />
+                                        </Link>
                                         <div className="mt-4 px-2  pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
@@ -126,20 +126,20 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
-                                            <Link
-                                                href={{
-                                                    pathname: `/Product/${Item.id}`,
-                                                }}
-                                            >
-                                                <Image
-                                                    className="cursor-pointer"
-                                                    src={Item.image}
-                                                    alt="product image"
-                                                    width={100}
-                                                    height={100}
-                                                    priority={false} />
-                                            </Link> 
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                        <Link className="relative  mt-3 flex h-32"
+                                            href={{
+                                                pathname: `/Product/${Item.id}`,
+                                            }}
+                                        >
+                                            <Image
+                                                className="cursor-pointer"
+                                                src={Item.image}
+                                                alt="product image"
+                                                fill={true}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                priority={false} />
+                                        </Link>
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold  tracking-tight text-slate-900">{Item.category}</span>
@@ -168,23 +168,23 @@ const Category = () => {
                         )) :
                             data?.map((Item: any) => {
                                 return (
-                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}> 
-                                            <Link
-                                                href={{
-                                                    pathname: `/Product/${Item.id}`,
+                                    <div className="relative mt-5 flex w-full max-w-xs flex-col overflow-hidden bg-white" key={Item.id}>
+                                        <Link className="relative  mt-3 flex h-32"
+                                            href={{
+                                                pathname: `/Product/${Item.id}`,
+                                            }}
+                                        >
+                                            <Image
+                                                onClick={() => {
+                                                    router.push(`/Product/${Item.id}`);
                                                 }}
-                                            >
-                                                <Image
-                                                    onClick={() => {
-                                                        router.push(`/Product/${Item.id}`);
-                                                    }}
-                                                    className="cursor-pointer"
-                                                    src={Item.image}
-                                                    alt="product image"
-                                                    width={100}
-                                                    height={100}
-                                                    priority={false} />
-                                            </Link> 
+                                                className="cursor-pointer"
+                                                src={Item.image}
+                                                alt="product image"
+                                                fill={true}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                priority={false} />
+                                        </Link>
                                         <div className="mt-4 px-2 pb-5">
                                             <a href="#">
                                                 <span className="text-xs font-bold tracking-tight text-slate-900">{Item.category}</span>

@@ -18,11 +18,23 @@ import {
 import { Button } from './ui/button';
 import Link from 'next/link';
 import AddressDialog from './Dialog/AddressDialog';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+
+// Define the function to fetch data
+const fetchData = async () => {
+    const response = await axios.get('/api/saveAddress');
+    return response.data;
+};
+
 
 
 const Navbar = () => {
+    const { data, error, isLoading, isError } = useQuery(['addressFetch'], fetchData);
     const router = useRouter();
-    const cart = useSelector((state: RootState) => state.cart.cart)
+    const cart = useSelector((state: RootState) => state.cart.cart);
+    const isAuth = localStorage.getItem('login');
+    
     return (
         <header className='h-22 bg-black w-full'>
             <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1.5'>
@@ -50,7 +62,15 @@ const Navbar = () => {
                             <FaLocationDot className='inline-block' size={20} />
                         </span>
                         <div className='grid 2xl:grid-rows-[40%_60%] grid-rows-[50%_50%] '>
-                           <AddressDialog/>
+                            <Link href={isAuth === 'true' ? '#' : '/signIn'}>
+                                {
+                                    isAuth === 'true' ? <AddressDialog /> :
+                                        <>
+                                            <span className='grid justify-start'>Delivering to New Delhi</span>
+                                            <span className='grid justify-start'>Update Location</span>
+                                        </>
+                                }
+                            </Link>
                         </div>
                     </span>
                 </div>
@@ -76,8 +96,10 @@ const Navbar = () => {
                         <span>EN</span>
                     </div>
                     <div className="text-sm">
-                        Hello, sign in
-                        <div className="font-bold">Account & Lists</div>
+                        <Link href={'/signIn'}>
+                            Hello, sign in
+                            <div className="font-bold">Account & Lists</div>
+                        </Link>
                     </div>
                     <div className="text-sm">
                         <div>Returns</div>

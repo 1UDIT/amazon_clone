@@ -29,6 +29,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
 
 const formSchema = z.object({
@@ -38,16 +39,25 @@ const formSchema = z.object({
     State: z.string().max(10),
 });
 
-
+// Define the function to fetch data
+const fetchData = async () => {
+    const response = await axios.get('/api/saveAddress');
+    return response.data;
+};
 
 const AddressDialog = () => {
-
+    const { data, error, isLoading, isError } = useQuery(['addressFetch'], fetchData);
+    const deliverAddress = data?.message.map((value: any) => { return value.Name })
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             Name: "",
+            Mobile: "",
+            Address: "",
+            State: "",
         },
     });
+
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
@@ -67,8 +77,7 @@ const AddressDialog = () => {
         }).catch(error => {
             console.log("Error In Post Data getItems", error);
         });
-    };
-
+    }; 
 
     const AddressForm = (
         <Form {...form}>
@@ -142,8 +151,8 @@ const AddressDialog = () => {
         <Dialog>
             <DialogTrigger className='grid justify-start'>
                 <>
-                    <span>Delivering to New Delhi</span>
-                    <span>Update Location</span>
+                    <span className='grid justify-start'>Delivering to {isLoading === false ? deliverAddress[0] : null}</span>
+                    <span className='grid justify-start'>Update Location</span>
                 </>
             </DialogTrigger>
             <DialogContent>

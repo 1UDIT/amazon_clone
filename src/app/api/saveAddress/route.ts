@@ -1,12 +1,12 @@
-import { connectToDatabase } from "@/dbConfig/dbConfig"
-import Address from "@/models/Address";
+import { connectToDatabase } from "@/dbConfig/dbConfig" 
 import { NextResponse } from "next/server";
+import AddressSave from "@/models/Address";
 
 export async function GET() {
     try {
         let { db } = await connectToDatabase();
 
-        let post = await db.collection('news').find({})
+        let post = await db.collection('AddressSave').find({})
             .sort({ published: -1 })
             .toArray();
         // return the posts
@@ -35,13 +35,13 @@ export async function POST(req: Request) {
     let formData = await req.formData();
     let body = Object.fromEntries(formData);
     try {
-        const newTask = new Address({
+        const newTask = new AddressSave({
             Name: body.Name,
             Mobile: body.Mobile,
             State: body.State,
             Address: body.Address,
         });
-        let myPost = await db.collection("schedules").insertOne(newTask);
+        let myPost = await db.collection("AddressSave").insertOne(newTask);
         // return the posts
         return NextResponse.json(
             {
