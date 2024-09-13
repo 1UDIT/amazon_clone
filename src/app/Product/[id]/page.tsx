@@ -11,8 +11,7 @@ interface props {
   id: any
 }
 
-const fetchProducts = async (id: any) => {
-  console.log(id, "ID inside")
+const fetchProducts = async (id: any) => { 
   const response = await fetch(`https://fakestoreapi.com/products/${id}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')

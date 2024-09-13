@@ -37,8 +37,7 @@ export default function CartItem({ item, cartItems }: props) {
     const dispatch = useDispatch();
 
     const handleChangeQuantity = (newQuantity: any, productId: any) => {
-        const product = cartItems.find((item: any) => item.id === productId);
-        console.log(product.quantity, "product.quantity", productId, "newQuantity", newQuantity)
+        const product = cartItems.find((item: any) => item.id === productId); 
 
         if (product.quantity < newQuantity) {
             dispatch(incrementQuantity({ id: product.id, amount: newQuantity }));

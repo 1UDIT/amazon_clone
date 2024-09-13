@@ -6,7 +6,7 @@ import { FaFlag, FaLocationDot } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector } from 'react-redux';
 import { RootState } from '@/Redux/Slice/store';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
     Sheet,
     SheetContent,
@@ -18,25 +18,15 @@ import {
 import { Button } from './ui/button';
 import Link from 'next/link';
 import AddressDialog from './Dialog/AddressDialog';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-
-// Define the function to fetch data
-const fetchData = async () => {
-    const response = await axios.get('/api/saveAddress');
-    return response.data;
-};
-
-
 
 const Navbar = () => {
-    const { data, error, isLoading, isError } = useQuery(['addressFetch'], fetchData);
     const router = useRouter();
     const cart = useSelector((state: RootState) => state.cart.cart);
     const isAuth = localStorage.getItem('login');
-    
+    const pathname = usePathname();  // Get the current path
+    console.log(pathname === '/BuyProductPage', 'path')
     return (
-        <header className='h-22 bg-black w-full'>
+        <header className={`${pathname === '/BuyProductPage' ? "hidden" : "block"} h-22 bg-black w-full`}>
             <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1.5'>
                 <div className='text-white grid 2xl:grid-cols-[40%_60%] lg:grid-cols-[45%_55%] justify-start'>
                     <span className='w-full m-2 flex items-center justify-center h-9'>
@@ -62,15 +52,13 @@ const Navbar = () => {
                             <FaLocationDot className='inline-block' size={20} />
                         </span>
                         <div className='grid 2xl:grid-rows-[40%_60%] grid-rows-[50%_50%] '>
-                            <Link href={isAuth === 'true' ? '#' : '/signIn'}>
-                                {
-                                    isAuth === 'true' ? <AddressDialog /> :
-                                        <>
-                                            <span className='grid justify-start'>Delivering to New Delhi</span>
-                                            <span className='grid justify-start'>Update Location</span>
-                                        </>
-                                }
-                            </Link>
+                            {
+                                isAuth === 'true' ? <AddressDialog /> :
+                                    <Link href={'/signIn'}>
+                                        <span className='grid justify-start'>Delivering to Delhi</span>
+                                        <span className='grid justify-start'>Update Location</span>
+                                    </Link>
+                            }
                         </div>
                     </span>
                 </div>

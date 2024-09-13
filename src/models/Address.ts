@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import { boolean } from "zod";
 
 const Address = new Schema({
     Name: {
@@ -15,8 +16,11 @@ const Address = new Schema({
     },
     Address: {
         type: String, 
-        required: true,
-        default: 'Monday'
+        required: true, 
+    }, 
+    activeAddress: {
+        type: Boolean,  
+        default: false
     }, 
 });
 

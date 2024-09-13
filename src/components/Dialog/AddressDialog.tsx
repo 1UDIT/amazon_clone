@@ -35,8 +35,8 @@ import { useQuery } from 'react-query';
 const formSchema = z.object({
     Name: z.string().min(3).max(50),
     Mobile: z.string().max(10),
-    Address: z.string().max(10),
-    State: z.string().max(10),
+    Address: z.string(),
+    State: z.string(),
 });
 
 // Define the function to fetch data
@@ -47,16 +47,21 @@ const fetchData = async () => {
 
 const AddressDialog = () => {
     const { data, error, isLoading, isError } = useQuery(['addressFetch'], fetchData);
-    const deliverAddress = data?.message.map((value: any) => { return value.Name })
+    const deliverAddress = !isLoading && data?.message 
+    ? data.message
+        .filter((value: any) => value.activeAddress) // Filter active items
+        .map((value: any) => value.Name)   // Map to their content
+    : [];
+  
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             Name: "",
             Mobile: "",
             Address: "",
-            State: "",
+            State: "Delhi",
         },
-    });
+    }); 
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
@@ -77,7 +82,7 @@ const AddressDialog = () => {
         }).catch(error => {
             console.log("Error In Post Data getItems", error);
         });
-    }; 
+    };
 
     const AddressForm = (
         <Form {...form}>
@@ -86,7 +91,7 @@ const AddressDialog = () => {
                     control={form.control}
                     name="Name"
                     render={({ field }) => (
-                        <FormItem className='grid grid-cols-[20%_80%] items-center'>
+                        <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
                                 <Input placeholder="Name" {...field} />
@@ -99,7 +104,7 @@ const AddressDialog = () => {
                     control={form.control}
                     name="Mobile"
                     render={({ field }) => (
-                        <FormItem className='grid grid-cols-[20%_80%] items-center'>
+                        <FormItem>
                             <FormLabel>Mobile No.</FormLabel>
                             <FormControl>
                                 <Input placeholder="Mobile" {...field} />
@@ -112,7 +117,7 @@ const AddressDialog = () => {
                     control={form.control}
                     name="Address"
                     render={({ field }) => (
-                        <FormItem className='grid grid-cols-[20%_80%] items-center'>
+                        <FormItem>
                             <FormLabel>Address</FormLabel>
                             <FormControl>
                                 <Input placeholder="Address" {...field} />
@@ -125,7 +130,7 @@ const AddressDialog = () => {
                     control={form.control}
                     name="State"
                     render={({ field }) => (
-                        <FormItem className='grid grid-cols-[20%_80%] items-center'>
+                        <FormItem>
                             <FormLabel>State</FormLabel>
                             <FormControl>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -156,10 +161,10 @@ const AddressDialog = () => {
                 </>
             </DialogTrigger>
             <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Update Address</DialogTitle>
-                    {AddressForm}
-                </DialogHeader>
+                <DialogTitle>Update Address</DialogTitle>
+                <DialogDescription>
+                </DialogDescription>
+                {AddressForm}
             </DialogContent>
         </Dialog>
     )
