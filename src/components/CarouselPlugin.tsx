@@ -10,6 +10,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Image from "next/image"
+
+const ImageBlog = [
+  {
+    "ix": 1,
+    "img": "/img/Narzo.jpg"
+  },
+  {
+    "ix": 2,
+    "img": "/img/Ola.jpg"
+  },
+  {
+    "ix": 3,
+    "img": "/img/remote.jpg"
+  },
+]
+
+
+
 
 export function CarouselPlugin() {
   const plugin = React.useRef(
@@ -18,20 +37,26 @@ export function CarouselPlugin() {
 
   return (
     <Carousel
-      plugins={[plugin.current]} 
+      plugins={[plugin.current]}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6 2xl:h-[25rem] h-[20rem] w-full">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+        {ImageBlog?.map((value) => (
+          <CarouselItem key={value.ix}>
+            <Card>
+              <CardContent className="flex aspect-square items-center justify-center 2xl:h-[25rem] h-[25rem] w-full">
+                <Image
+                  src={value.img}
+                  alt="product image"
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  className='h-full w-full inline-block cursor-pointer'
+                  priority={true}
+                />
+              </CardContent>
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>

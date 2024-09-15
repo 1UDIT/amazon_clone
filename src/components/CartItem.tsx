@@ -11,6 +11,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 
 const options = [
     { value: "1" },
@@ -35,9 +36,10 @@ type props = {
 export default function CartItem({ item, cartItems }: props) {
     const [selectedValue, setSelectvalue] = useState<string>(`${item.quantity}`);
     const dispatch = useDispatch();
+    const { toast } = useToast()
 
     const handleChangeQuantity = (newQuantity: any, productId: any) => {
-        const product = cartItems.find((item: any) => item.id === productId); 
+        const product = cartItems.find((item: any) => item.id === productId);
 
         if (product.quantity < newQuantity) {
             dispatch(incrementQuantity({ id: product.id, amount: newQuantity }));
@@ -78,7 +80,12 @@ export default function CartItem({ item, cartItems }: props) {
                         </SelectContent>
                     </Select>
                 </div>
-                <Button className="text-blue-500 text-sm" onClick={() => {dispatch(removeFromCart(item.id));console.log(item.id)}}>Delete</Button>
+                <Button className="text-blue-500 text-sm" onClick={() => {
+                    dispatch(removeFromCart(item.id));
+                    toast({                        
+                        description: "Delete item"
+                    })
+                }}>Delete</Button>
             </div>
         </div>
     );

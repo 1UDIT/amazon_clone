@@ -25,12 +25,12 @@ const Category = () => {
     const { data, error, isLoading } = useQuery(['products'], fetchProducts);
 
     return (
-        <div className="grid grid-cols-1  gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-4">
+        <div className="grid grid-cols-1  gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             <div className="col-span-1 bg-white p-5">
                 <div className="pl-5 text-lg font-bold">
                     Pick up where you left off
                 </div>
-                <div className="grid grid-cols-2 gap-2 p-5 mix-blend-multiply">
+                <div className="grid grid-cols-2 gap-4 p-5 mix-blend-multiply">
                     {
                         isLoading === true ? Array(4).fill(null).map((_, index) => (
                             <div

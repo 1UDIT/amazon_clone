@@ -17,7 +17,8 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from './ui/button';
 import Link from 'next/link';
-import AddressDialog from './Dialog/AddressDialog';
+import AddressDialog from './Dialog/AddressDialog'; 
+
 
 const Navbar = () => {
     const router = useRouter();
@@ -27,8 +28,8 @@ const Navbar = () => {
     console.log(pathname === '/BuyProductPage', 'path')
     return (
         <header className={`${pathname === '/BuyProductPage' ? "hidden" : "block"} h-22 bg-black w-full`}>
-            <div className='h-14 grid 2xl:grid-cols-[25%_50%_25%] lg:grid-cols-3 grid-cols-[25%_45%_30%] pt-1.5'>
-                <div className='text-white grid 2xl:grid-cols-[40%_60%] lg:grid-cols-[45%_55%] justify-start'>
+            <div className='h-14 grid  grid-cols-[40%_40%_20%] lg:grid-cols-[20%_50%_30%] 2xl:grid-cols-[25%_45%_30%] pt-1.5'>
+                <div className='text-white grid 2xl:grid-cols-[40%_60%] lg:grid-cols-[50%_50%] justify-start'>
                     <span className='w-full m-2 flex items-center justify-center h-9'>
                         <Link
                             href={{
@@ -47,13 +48,14 @@ const Navbar = () => {
                         </Link>
                         <span className='text-lg text-white '>.in</span>
                     </span>
-                    <span className='grid  2xl:grid-cols-[10%_90%] lg:grid-cols-[15%_85%] grid-cols-[15%_85%] text-xs pt-1'>
+                    <span className='grid hidden 2xl:inline-flex lg:inline-flex  2xl:grid-cols-[10%_90%] lg:grid-cols-[15%_85%] grid-cols-[15%_85%] text-xs pt-1'>
                         <span className='flex items-center'>
                             <FaLocationDot className='inline-block' size={20} />
                         </span>
-                        <div className='grid 2xl:grid-rows-[40%_60%] grid-rows-[50%_50%] '>
+                        <div className='grid  2xl:grid-rows-[40%_60%] grid-rows-[50%_50%] '>
                             {
-                                isAuth === 'true' ? <AddressDialog /> :
+                                isAuth === 'true' ?
+                                    <AddressDialog /> :
                                     <Link href={'/signIn'}>
                                         <span className='grid justify-start'>Delivering to Delhi</span>
                                         <span className='grid justify-start'>Update Location</span>

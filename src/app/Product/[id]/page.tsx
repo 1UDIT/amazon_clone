@@ -1,5 +1,8 @@
 'use client'
 
+import { Button } from '@/components/ui/button';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/hooks/use-toast';
 import { addToCart } from '@/Redux/Slice/cartSlice';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
@@ -11,7 +14,7 @@ interface props {
   id: any
 }
 
-const fetchProducts = async (id: any) => { 
+const fetchProducts = async (id: any) => {
   const response = await fetch(`https://fakestoreapi.com/products/${id}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
@@ -25,7 +28,8 @@ const page = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useQuery(['productsId', id], () => fetchProducts(id));
   const discount = ((200 - data?.price) / 200) * 100;
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
+  const { toast } = useToast()
   return (
     <div className="container mx-auto p-4">
       {/* Main container */}
@@ -86,23 +90,29 @@ const page = () => {
               <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 rounded">
                 Buy Now
               </button>
-              <button onClick={() => dispatch(addToCart(data))}  className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 rounded mt-2">
+              <Button onClick={() => {
+                dispatch(addToCart(data));
+                toast({
+                  description: "Added In Cart",
+                })
+              }}
+                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 rounded mt-2">
                 Add to Cart
-              </button>
+              </Button>
             </div>
 
-            {/* Warranty */}
-            {data?.category === "Electronic" ?
-              <div className="mt-4">
-                <label className="inline-flex items-center">
-                  <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-                  <span className="ml-2"> 1 Year Extended Warranty for ₹898.90</span>
-                </label>
-              </div>
-              : null}
+              {/* Warranty */}
+              {data?.category === "Electronic" ?
+                <div className="mt-4">
+                  <label className="inline-flex items-center">
+                    <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+                    <span className="ml-2"> 1 Year Extended Warranty for ₹898.90</span>
+                  </label>
+                </div>
+                : null}
           </div>
         </div>
-      </div>
+      </div>       
     </div>
   );
 }

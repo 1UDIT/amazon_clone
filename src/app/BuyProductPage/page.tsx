@@ -46,7 +46,7 @@ const page = () => {
       .filter((value: any) => value.activeAddress) // Filter active items
       .map((value: any) => value.Name)   // Map to their content
     : [];
-  const queryClient = useQueryClient(); 
+  const queryClient = useQueryClient();
 
   // Using useMutation to handle the mutation
   const mutation = useMutation(postData, {
@@ -62,6 +62,7 @@ const page = () => {
   const updatAddress = () => {
     mutation.mutate(select.Mobile);
   }
+
   return (
     <div className="grid grid-rows-[5%_95%] h-screen">
       <div className="w-full h-full  text-slate-50 bg-[#d1d1d1]">
@@ -80,19 +81,18 @@ const page = () => {
           <span className='text-lg text-white '>.in</span>
         </span>
       </div>
-      <div className='grid grid-rows-[5%_20%_75%]'>
-        <div className='flex items-center justify-center text-xl'>CheckOut</div>
+      <div className='grid grid-rows-[25%_74%] 2xl:black'> 
         <div className='h-full'>
-            <CartHeader cartItems={cart} subtotal={subtotal} />
-          </div>
-        <div className='grid container mx-auto grid-cols-1  justify-items-center m-6'>
-          <div className='border-2 border-black rounded-lg w-full p-6 h-full'>
-            <div className='h-[10%] flex items-center justify-center text-xl border-b-2 border-black m-4 '>Select the address</div>
-            <div className='border-2 border-black rounded-lg h-[80%] text-lg'>
+          <CartHeader cartItems={cart} subtotal={subtotal} />
+        </div>
+        <div className='grid container mx-auto grid-cols-1  justify-items-center'>
+          <div className='border-2 border-black rounded-lg w-full h-full lg:px-3 xl:px-4 2xl:px-9'>
+            <div className='h-[10%] flex items-center justify-center text-xl my-1'>Select the address</div>
+            <div className='border-2 border-black rounded-lg h-[80%] text-lg '>
               {!isLoading && data?.message.map((value: any) => {
-                console.log(deliverAddress[0], "deliverAddress[0] === select.name",select)
+                console.log(deliverAddress[0], "deliverAddress[0] === select.name", select)
                 return (
-                  <RadioGroup className={`${deliverAddress[0]===value.Name ? 'bg-red-100' : 'bg-white'} px-5`} defaultValue={deliverAddress[0]} key={value._id} value={select.name}
+                  <RadioGroup className={`${deliverAddress[0] === value.Name ? 'bg-red-100' : 'bg-white'} px-5`} defaultValue={deliverAddress[0]} key={value._id} value={select.name}
                     onValueChange={() => setSelect({ name: value.Name, Mobile: value.Mobile })}>
                     <div className="flex items-center space-x text-lg">
                       <RadioGroupItem value={value.Name} id="option-one" />
@@ -103,11 +103,11 @@ const page = () => {
               })
               }
             </div>
-            <div className='h-[10%] flex items-center justify-center text-xl'>
+            <div className='p-1 flex items-center justify-center text-xl'>
               <Button variant={'destructive'} onClick={() => updatAddress()}>Save</Button>
             </div>
           </div>
-        
+
         </div>
       </div>
     </div>

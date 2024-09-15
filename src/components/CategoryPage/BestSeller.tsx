@@ -25,8 +25,7 @@ const fetchProducts = async () => {
 }
 
 
-const BestSeller = () => {
-    // const [data] = CategorySelect();
+const BestSeller = () => { 
     const { data, error, isLoading } = useQuery(['productsElectroinc'], fetchProducts);
 
     return (
