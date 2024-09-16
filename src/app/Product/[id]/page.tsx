@@ -1,8 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button';
-import { ToastAction } from '@/components/ui/toast';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from "sonner"
 import { addToCart } from '@/Redux/Slice/cartSlice';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
@@ -29,7 +28,6 @@ const page = () => {
   const { data, error, isLoading } = useQuery(['productsId', id], () => fetchProducts(id));
   const discount = ((200 - data?.price) / 200) * 100;
   const dispatch = useDispatch();
-  const { toast } = useToast()
   return (
     <div className="container mx-auto p-4">
       {/* Main container */}
@@ -92,27 +90,25 @@ const page = () => {
               </button>
               <Button onClick={() => {
                 dispatch(addToCart(data));
-                toast({
-                  description: "Added In Cart",
-                })
+                toast("Added In Cart")
               }}
                 className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 rounded mt-2">
                 Add to Cart
               </Button>
             </div>
 
-              {/* Warranty */}
-              {data?.category === "Electronic" ?
-                <div className="mt-4">
-                  <label className="inline-flex items-center">
-                    <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
-                    <span className="ml-2"> 1 Year Extended Warranty for ₹898.90</span>
-                  </label>
-                </div>
-                : null}
+            {/* Warranty */}
+            {data?.category === "Electronic" ?
+              <div className="mt-4">
+                <label className="inline-flex items-center">
+                  <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
+                  <span className="ml-2"> 1 Year Extended Warranty for ₹898.90</span>
+                </label>
+              </div>
+              : null}
           </div>
         </div>
-      </div>       
+      </div>
     </div>
   );
 }

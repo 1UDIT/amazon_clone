@@ -1,8 +1,6 @@
-import { decrementQuantity, incrementQuantity, removeFromCart } from "@/Redux/Slice/cartSlice";
-import { RootState } from "@/Redux/Slice/store";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { decrementQuantity, incrementQuantity, removeFromCart } from "@/Redux/Slice/cartSlice"; 
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button } from "./ui/button";
 import {
     Select,
@@ -11,7 +9,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 const options = [
     { value: "1" },
@@ -36,7 +34,6 @@ type props = {
 export default function CartItem({ item, cartItems }: props) {
     const [selectedValue, setSelectvalue] = useState<string>(`${item.quantity}`);
     const dispatch = useDispatch();
-    const { toast } = useToast()
 
     const handleChangeQuantity = (newQuantity: any, productId: any) => {
         const product = cartItems.find((item: any) => item.id === productId);
@@ -82,9 +79,7 @@ export default function CartItem({ item, cartItems }: props) {
                 </div>
                 <Button className="text-blue-500 text-sm" onClick={() => {
                     dispatch(removeFromCart(item.id));
-                    toast({                        
-                        description: "Delete item"
-                    })
+                    toast("Delete item");
                 }}>Delete</Button>
             </div>
         </div>

@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import React, { use, useEffect } from 'react'
+import React from 'react'
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { FaFlag, FaLocationDot } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -9,6 +9,7 @@ import { RootState } from '@/Redux/Slice/store';
 import { usePathname, useRouter } from 'next/navigation';
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -17,15 +18,14 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from './ui/button';
 import Link from 'next/link';
-import AddressDialog from './Dialog/AddressDialog'; 
+import AddressDialog from './Dialog/AddressDialog';
 
 
 const Navbar = () => {
     const router = useRouter();
     const cart = useSelector((state: RootState) => state.cart.cart);
     const isAuth = localStorage.getItem('login');
-    const pathname = usePathname();  // Get the current path
-    console.log(pathname === '/BuyProductPage', 'path')
+    const pathname = usePathname();  // Get the current path 
     return (
         <header className={`${pathname === '/BuyProductPage' ? "hidden" : "block"} h-22 bg-black w-full`}>
             <div className='h-14 grid  grid-cols-[40%_40%_20%] lg:grid-cols-[20%_50%_30%] 2xl:grid-cols-[25%_45%_30%] pt-1.5'>
@@ -92,22 +92,39 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className="text-sm">
-                        <div>Returns</div>
-                        <div className="font-bold">& Orders</div>
+                        {
+                            isAuth === 'true' ?
+                                <Link href={'/orderDetails'}>
+                                    <div>Returns</div>
+                                    <div className="font-bold">& Orders</div>
+                                </Link> :
+                                <Link href={'/signIn'}>
+                                    <div>Returns</div>
+                                    <div className="font-bold">& Orders</div>
+                                </Link>
+                        }
                     </div>
-                    <div className="text-sm pt-2 relative cursor-pointer" onClick={() => {
-                        router.push(`/Cart`);
-                    }}>
-                        <div className="absolute left-[10px] ">
-                            <p
-                                className={`flex items-center justify-center text-xs 
+                    <div className="text-sm pt-2 relative cursor-pointer">
+                        {
+                            isAuth === 'true' ?
+                                <Link href={'/Cart'}>
+                                    <div className="absolute left-[10px] ">
+                                        <p
+                                            className={`flex items-center justify-center text-xs 
                                 ${cart.length === 0 ? "hidden" : "block h-5 w-5 rounded-full bg-red-600"}`}
-                            >
-                                {cart.length}
-                            </p>
-                        </div>
-                        <FiShoppingCart size={30} className='inline-block' />
-                        <span className="font-bold">Cart</span>
+                                        >
+                                            {cart.length}
+                                        </p>
+                                    </div>
+                                    <FiShoppingCart size={30} className='inline-block' />
+                                    <span className="font-bold">Cart</span>
+                                </Link> :
+                                <Link href={'/signIn'}>
+                                    <FiShoppingCart size={30} className='inline-block' />
+                                    <span className="font-bold">Cart</span>
+                                </Link>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -123,7 +140,7 @@ const Navbar = () => {
                                     </span>
                                 </Button>
                             </SheetTrigger>
-                            <Test />
+                            <LeftSilder />
                         </Sheet>
                     </span>
                     <span className='flex items-center content-center'>Fresh</span>
@@ -143,14 +160,18 @@ const Navbar = () => {
     )
 }
 
-export const Test = () => {
+export const LeftSilder = () => {
     return (
         <SheetContent side={'left'}>
             <SheetHeader>
                 <SheetTitle className="text-center">Restore Panel</SheetTitle>
             </SheetHeader>
             <div className="mx-auto w-full max-w-sm pt-5">
-                test
+                <SheetClose asChild>
+                    <Link href={'/signIn'}>
+                        <Button variant={'ghost'} onClick={() => { localStorage.removeItem('login'); document.cookie = `login=false; path=/;`; }}> sign-Out</Button>
+                    </Link>
+                </SheetClose>
             </div>
         </SheetContent >
 

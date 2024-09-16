@@ -81,8 +81,7 @@ export async function PUT(req: Request) {
         await db.collection("AddressSave").updateMany({}, { $set: { activeAddress: false } });
 
         await db.collection("AddressSave").updateOne({ Mobile: Mobile }, { $set: { activeAddress: true } });
-
-        console.log('PUT METHOD', Mobile)
+ 
 
         // return the posts
         return NextResponse.json(

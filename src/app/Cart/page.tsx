@@ -14,12 +14,15 @@ const page = () => {
     }, [cart])
 
 
+    const updatAddress=()=>{
+        console.log("click");
+    }
 
 
 
     return (
         <div className="container mx-auto p-4">
-            <CartHeader cartItems={cart} subtotal={subtotal} />
+            <CartHeader cartItems={cart} subtotal={subtotal} btnText={" Proceed to Buy"} link={"/BuyProductPage"} updatAddress={updatAddress}/>
 
             <div className="grid grid-cols-12 gap-4 mt-4">
                 {/* Cart Items Section */}

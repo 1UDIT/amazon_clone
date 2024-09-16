@@ -40,13 +40,12 @@ const page = () => {
             Password: "admin",
         },
     });
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values);
+    
+    async function onSubmit(values: z.infer<typeof formSchema>) { 
         if (values.Name === values.Password) {
             route.push('/');
             localStorage.setItem("login", "true");
+            document.cookie = `login=true; path=/;`; 
         }
     };
 
