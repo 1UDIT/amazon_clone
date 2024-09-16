@@ -46,7 +46,7 @@ const postData = async ([newData, cartData]: any) => {
 
 
 
-const page = () => {
+const Page = () => {
   const { data, error, isLoading, isError } = useQuery(['addressFetch'], fetchData);
   const cart: any = useSelector((state: RootState) => state.cart.cart);
   const [select, setSelect] = useState({ name: data?.message[0].Name, Mobile: '', address: '' });
@@ -144,4 +144,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;

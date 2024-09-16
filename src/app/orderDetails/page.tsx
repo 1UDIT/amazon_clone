@@ -11,7 +11,7 @@ const fetchData = async () => {
     return response.data.message;
 };
 
-const page = () => {
+const Page = () => {
     const { data, error, isLoading, isError } = useQuery(['OrderFetch'], fetchData);
     console.log(data?.order, "data", isLoading);
     return (
@@ -45,4 +45,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page;

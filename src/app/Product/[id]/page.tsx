@@ -23,7 +23,7 @@ const fetchProducts = async (id: any) => {
 
 
 
-const page = () => {
+const Page = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useQuery(['productsId', id], () => fetchProducts(id));
   const discount = ((200 - data?.price) / 200) * 100;
@@ -112,4 +112,4 @@ const page = () => {
     </div>
   );
 }
-export default page;
+export default Page;

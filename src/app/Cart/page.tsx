@@ -5,7 +5,7 @@ import { RootState } from '@/Redux/Slice/store';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 
-const page = () => {
+const Page = () => {
     const cart = useSelector((state: RootState) => state.cart.cart);
     const [subtotal, setSubtotal] = useState(cart.reduce((acc, item) => acc + item.price * item.quantity, 0));
 
@@ -52,4 +52,4 @@ const page = () => {
     );
 }
 
-export default page
+export default Page;
