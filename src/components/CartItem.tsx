@@ -10,6 +10,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const options = [
     { value: "1" },
@@ -52,7 +53,7 @@ export default function CartItem({ item, cartItems }: props) {
 
     return (
         <div className="flex items-center justify-between border-b py-4">
-            <img src={item.image} alt={item.title} className="w-24 h-24 object-cover" />
+            <Image width={60} height={50} src={item.image} alt={item.title} className="w-24 h-24 object-cover" />
             <div className="flex-1 px-4">
                 <h3 className="font-semibold">{item.title}</h3>
                 <p className="text-sm text-gray-500">Price: ₹{item.price}</p>

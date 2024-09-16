@@ -147,14 +147,10 @@ const Navbar = () => {
                 </div>
                 <div className='text-white grid grid-cols-[20%_20%_20%_20%_20%]'>
                     <span className='grid justify-center' >Prime</span>
-                    <span className='grid justify-center' >Today's Deals</span>
+                    <span className='grid justify-center' >Today&apos;s Deals</span>
                     <span className='grid justify-center' >Electronic</span>
                     <span className='grid justify-center' >Buy Again</span>
-                </div>
-                {/* <div className='text-white grid grid-cols-[30%_40%]'>
-                    <span className='grid justify-center' >userName</span>
-                    <span className='grid justify-end' ><FiShoppingCart /></span>
-                </div> */}
+                </div> 
             </div>
         </header >
     )
