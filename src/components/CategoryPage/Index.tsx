@@ -8,10 +8,12 @@ const BestSeller = dynamic(() => import('./BestSeller'), { ssr: false })
 
 const Index = () => {
     return (
-        <div className='relative top-[39%]'>
-            <div ><Category /></div>
-            <div className='rounded-xl border shadow flex my-2'><BestSeller /></div>
-        </div>
+        <>
+            <div className='h-[70%]  relative top-[39%]'>
+                <Category />
+            </div>
+            <div className='rounded-xl border-4 shadow flex my-4 border-slate-300'><BestSeller /></div>
+        </>
     )
 }
 
